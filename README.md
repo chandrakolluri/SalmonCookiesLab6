@@ -1,2 +1,2 @@
-# SalmonCookiesLab6
+# Cookie-Stand
 Salmon Cookies Lab Project
