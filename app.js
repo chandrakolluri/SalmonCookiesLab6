@@ -58,6 +58,7 @@ var seaTacSalesDetails = hourlySales(seaTacSales);
 seaTac.minCustomers = Math.min.apply(null,seaTacSales);
 seaTac.maxCustomers = Math.max.apply(null,seaTacSales);
 seaTac.avgCookies = Math.round(avgCookiesPerHour(seaTacSales));
+seaTac.totalCookies = totalCookiesSoldPerLocation(seaTacSales);
 consoleLogs(seaTac.totalCookies,seaTac.locationName,seaTac.avgCookies,seaTac.minCustomers,seaTac.maxCustomers,seaTacSales);
 
 var seaTacList = document.getElementById('seaTac-list');
@@ -68,10 +69,33 @@ var seattleCenterSalesDetails = hourlySales(seattleCenterSales);
 seattleCenter.minCustomers = Math.min.apply(null,seattleCenterSales);
 seattleCenter.maxCustomers = Math.max.apply(null,seattleCenterSales);
 seattleCenter.avgCookies = Math.round(avgCookiesPerHour(seattleCenterSales));
+seattleCenter.totalCookies = totalCookiesSoldPerLocation(seattleCenterSales);
 consoleLogs(seattleCenter.totalCookies,seattleCenter.locationName,seattleCenter.avgCookies,seattleCenter.minCustomers,seattleCenter.maxCustomers,seaTacSales);
 
 var seattleCenterList = document.getElementById('seattleCenter-list');
 buildList(seattleCenterSalesDetails,seattleCenterList);
+
+var capitolHillSales = salesDetails(visitingHours);
+var capitolHillSalesDetails = hourlySales(capitolHillSales);
+capitolHill.minCustomers = Math.min.apply(null,capitolHillSales);
+capitolHill.maxCustomers = Math.max.apply(null,capitolHillSales);
+capitolHill.avgCookies = Math.round(avgCookiesPerHour(capitolHillSales));
+capitolHill.totalCookies = totalCookiesSoldPerLocation(capitolHillSales);
+consoleLogs(capitolHill.totalCookies,capitolHill.locationName,capitolHill.avgCookies,capitolHill.minCustomers,capitolHill.maxCustomers,capitolHillSales);
+
+var capitolHillList = document.getElementById('capitolHill-list');
+buildList(capitolHillSalesDetails,capitolHillList);
+
+var alkiSales = salesDetails(visitingHours);
+var alkiSalesDetails = hourlySales(seaTacSales);
+alki.minCustomers = Math.min.apply(null,alkiSales);
+alki.maxCustomers = Math.max.apply(null,alkiSales);
+alki.avgCookies = Math.round(avgCookiesPerHour(alkiSales));
+alki.totalCookies = totalCookiesSoldPerLocation(alkiSales);
+consoleLogs(alki.totalCookies,alki.locationName,alki.avgCookies,alki.minCustomers,alki.maxCustomers,alkiSales);
+
+var alkiList = document.getElementById('alki-list');
+buildList(alkiSalesDetails,alkiList);
 
 function salesDetails(visitingHours) {
   var locationSalesDetails = [];
