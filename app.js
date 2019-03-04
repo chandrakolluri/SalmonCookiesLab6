@@ -6,35 +6,40 @@ var pikeStreet  = {
   locationName: '1st and Pike',
   minCustomers: Math.random(10,20), 
   maxCustomers: Math.random(21,30), 
-  avgCookies: 10
+  avgCookies: 0,
+  totalCookies: 0
 };
 
 var seaTac  = { 
   locationName: 'SeaTac Airport',
   minCustomers: Math.random(10,20), 
   maxCustomers: Math.random(21,30), 
-  avgCookies: 10
+  avgCookies: 0,
+  totalCookies: 0
 };
 
 var seattleCenter  = { 
   locationName: 'Seattle Center',
   minCustomers: Math.random(10,20), 
   maxCustomers: Math.random(21,30), 
-  avgCookies: 10
+  avgCookies: 0,
+  totalCookies: 0
 };
 
 var capitolHill  = { 
   locationName: 'Capitol Hill',
   minCustomers: Math.random(10,20), 
   maxCustomers: Math.random(21,30), 
-  avgCookies: 10
+  avgCookies: 10,
+  totalCookies: 10
 };
 
 var alki  = { 
   locationName: 'Alki',
   minCustomers: Math.random(10,20), 
   maxCustomers: Math.random(21,30), 
-  avgCookies: 10
+  avgCookies: 0,
+  totalCookies: 0
 };
 
 var pikeLocationSales = salesDetails(visitingHours);
@@ -42,7 +47,8 @@ var pikeHourlySalesDetails = hourlySales(pikeLocationSales);
 pikeStreet.minCustomers = Math.min.apply(null,pikeLocationSales);
 pikeStreet.maxCustomers = Math.max.apply(null,pikeLocationSales);
 pikeStreet.avgCookies = Math.round(avgCookiesPerHour(pikeLocationSales));
-consoleLogs(pikeStreet.locationName,pikeStreet.avgCookies,pikeStreet.minCustomers,pikeStreet.maxCustomers,pikeLocationSales);
+pikeStreet.totalCookies = totalCookiesSoldPerLocation(pikeLocationSales);
+consoleLogs(pikeStreet.totalCookies,pikeStreet.locationName,pikeStreet.avgCookies,pikeStreet.minCustomers,pikeStreet.maxCustomers,pikeLocationSales);
 
 var pikeList = document.getElementById('pike-list');
 buildList(pikeHourlySalesDetails,pikeList);
@@ -52,7 +58,7 @@ var seaTacSalesDetails = hourlySales(seaTacSales);
 seaTac.minCustomers = Math.min.apply(null,seaTacSales);
 seaTac.maxCustomers = Math.max.apply(null,seaTacSales);
 seaTac.avgCookies = Math.round(avgCookiesPerHour(seaTacSales));
-consoleLogs(seaTac.locationName,seaTac.avgCookies,seaTac.minCustomers,seaTac.maxCustomers,seaTacSales);
+consoleLogs(seaTac.totalCookies,seaTac.locationName,seaTac.avgCookies,seaTac.minCustomers,seaTac.maxCustomers,seaTacSales);
 
 var seaTacList = document.getElementById('seaTac-list');
 buildList(seaTacSalesDetails,seaTacList);
@@ -62,7 +68,7 @@ var seattleCenterSalesDetails = hourlySales(seattleCenterSales);
 seattleCenter.minCustomers = Math.min.apply(null,seattleCenterSales);
 seattleCenter.maxCustomers = Math.max.apply(null,seattleCenterSales);
 seattleCenter.avgCookies = Math.round(avgCookiesPerHour(seattleCenterSales));
-consoleLogs(seattleCenter.locationName,seattleCenter.avgCookies,seattleCenter.minCustomers,seattleCenter.maxCustomers,seaTacSales);
+consoleLogs(seattleCenter.totalCookies,seattleCenter.locationName,seattleCenter.avgCookies,seattleCenter.minCustomers,seattleCenter.maxCustomers,seaTacSales);
 
 var seattleCenterList = document.getElementById('seattleCenter-list');
 buildList(seattleCenterSalesDetails,seattleCenterList);
@@ -77,9 +83,12 @@ function salesDetails(visitingHours) {
 
 function hourlySales(locationSalesDetails){
   var locationHourlyTotals = [];
+  var totalSalesCount = 0;
   for (var i=0;i<locationSalesDetails.length;i++){
     locationHourlyTotals[i] = visitingHours[i] +': ' + locationSalesDetails[i] + ' Cookies' ;
+    totalSalesCount = totalSalesCount + locationSalesDetails[i];
   }
+  locationHourlyTotals[i] = 'Total: ' + totalSalesCount + ' Cookies';
   return locationHourlyTotals;
 }
  
@@ -91,12 +100,21 @@ function avgCookiesPerHour(locationSales) {
   return totalCookies / (visitingHours.length - 1);
 }
 
-function consoleLogs(locationName,avgCookies,minCustomers,maxCustomers,locationSales) {
+function totalCookiesSoldPerLocation(locationSales) {
+  var totalCookiesSold = 0;
+  for (var i=0;i<visitingHours.length;i++){
+    totalCookiesSold =  totalCookiesSold + locationSales[i];
+  }
+  return totalCookiesSold;
+}
+
+function consoleLogs(totalCookies,locationName,avgCookies,minCustomers,maxCustomers,locationSales) {
   console.log('Location Name :' + locationName);
+  console.log('Centre totals: ' + locationSales);
   console.log('Average Cookies per hour :' + avgCookies);
   console.log('Minimum customers count :' + minCustomers);
   console.log('Maximum customers count :' + maxCustomers);
-  console.log('Centre totals: ' + locationSales);
+  console.log('Total Cookies count :' + totalCookies);
   console.log('    ');
 }
 
