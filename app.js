@@ -2,45 +2,20 @@
 
 var visitingHours = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM'];
 
-var pikeStreet  = { 
-  locationName: '1st and Pike',
-  minCustomers: Math.random(10,20), 
-  maxCustomers: Math.random(21,30), 
-  avgCookies: 0,
-  totalCookies: 0
-};
 
-var seaTac  = { 
-  locationName: 'SeaTac Airport',
-  minCustomers: Math.random(10,20), 
-  maxCustomers: Math.random(21,30), 
-  avgCookies: 0,
-  totalCookies: 0
-};
+function LocationDetails(locationName, minCustomers, maxCustomers,avgCookies,totalCookies) {
+  this.locationName = locationName;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgCookies = avgCookies;
+  this.totalCookies = totalCookies;
+}
 
-var seattleCenter  = { 
-  locationName: 'Seattle Center',
-  minCustomers: Math.random(10,20), 
-  maxCustomers: Math.random(21,30), 
-  avgCookies: 0,
-  totalCookies: 0
-};
-
-var capitolHill  = { 
-  locationName: 'Capitol Hill',
-  minCustomers: Math.random(10,20), 
-  maxCustomers: Math.random(21,30), 
-  avgCookies: 10,
-  totalCookies: 10
-};
-
-var alki  = { 
-  locationName: 'Alki',
-  minCustomers: Math.random(10,20), 
-  maxCustomers: Math.random(21,30), 
-  avgCookies: 0,
-  totalCookies: 0
-};
+var pikeStreet = new LocationDetails('1st and Pike',Math.random(10,20),Math.random(21,30));
+var seaTac = new LocationDetails('SeaTac Airport',Math.random(10,20),Math.random(21,30));
+var seattleCenter  = new LocationDetails('seattleCenter',Math.random(10,20),Math.random(21,30));
+var capitolHill  = new LocationDetails('Capitol Hill',Math.random(10,20),Math.random(21,30));
+var alki  = new LocationDetails('Alki',Math.random(10,20),Math.random(21,30));
 
 var pikeLocationSales = salesDetails(visitingHours);
 var pikeHourlySalesDetails = hourlySales(pikeLocationSales);
@@ -152,6 +127,46 @@ function buildList(hourlySalesDetails,pikeList) {
   return pikeList;
 }
 
+
+// var pikeStreet  = { 
+//   locationName: '1st and Pike',
+//   minCustomers: Math.random(10,20), 
+//   maxCustomers: Math.random(21,30), 
+//   avgCookies: 0,
+//   totalCookies: 0
+// };
+  
+// var seaTac  = { 
+  //   locationName: 'SeaTac Airport',
+  //   minCustomers: Math.random(10,20), 
+  //   maxCustomers: Math.random(21,30), 
+  //   avgCookies: 0,
+  //   totalCookies: 0
+  // };
+  
+  // var seattleCenter  = { 
+  //   locationName: 'Seattle Center',
+  //   minCustomers: Math.random(10,20), 
+  //   maxCustomers: Math.random(21,30), 
+  //   avgCookies: 0,
+  //   totalCookies: 0
+  // };
+  
+  // var capitolHill  = { 
+  //   locationName: 'Capitol Hill',
+  //   minCustomers: Math.random(10,20), 
+  //   maxCustomers: Math.random(21,30), 
+  //   avgCookies: 10,
+  //   totalCookies: 10
+  // };
+  
+  // var alki  = { 
+  //   locationName: 'Alki',
+  //   minCustomers: Math.random(10,20), 
+  //   maxCustomers: Math.random(21,30), 
+  //   avgCookies: 0,
+  //   totalCookies: 0
+  // };
 
 
 
